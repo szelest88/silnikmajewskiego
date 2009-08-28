@@ -1,7 +1,7 @@
 #include <windows.h>              // musi byæ, nie mo¿na u¿yæ <stdio.h> zamiast tego
 #define GLUT_DISABLE_ATEXIT_HACK  // musi byæ u¿yte przed includowaniem "glut.h"
 #include "zmienne.h"
-//#include "funkcje.h"
+
 #include <iostream>
 #include <math.h>
 #include <stdlib.h>
