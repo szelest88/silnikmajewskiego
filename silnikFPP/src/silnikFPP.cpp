@@ -34,7 +34,6 @@ void rysujDomek() {
 
 }
 
-
 void zorientujMnie(float ang) {
 	lx = sin(ang);
 	lz = -cos(ang);
@@ -45,18 +44,14 @@ void zorientujMnie(float ang) {
 }
 
 void PlaskiRuch(int i) {
-	x += i*lx*0.05;
-	z += i*lz*0.05;
-	cout<<z<<"\n";
+	x += i * lx * 0.05;
+	z += i * lz * 0.05;
+	cout << z << "\n";
 	glLoadIdentity();
 
-	gluLookAt(	x,		y,		z,
-				x+lx,	y+ly,	z+lz,
-				0.0f,	1.0,	0.0f	);
-
+	gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
 
 }
-
 
 void Draw() {
 	cout << "a";
@@ -67,19 +62,20 @@ void Draw() {
 	if (deltaKat) {
 		kat += deltaKat;
 
-		zorientujMnie(kat+ang2);
+		zorientujMnie(kat + ang2);
 
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);	//w³¹czamy testowanie g³êbokoœci
+	glEnable(GL_DEPTH_TEST); //w³¹czamy testowanie g³êbokoœci
+
 	glColor3f(0.9, 0.9, 0.9); // ustalamy kolor na jasno-szary
 	// ziuuu, teraz rysujemy pod³o¿e
 	glBegin(GL_QUADS);
-			glVertex3f(-100.0f, 0.0f, -100.0f);
-			glVertex3f(-100.0f, 0.0f, 100.0f);
-			glVertex3f(100.0f, 0.0f, 100.0f);
-			glVertex3f(100.0f, 0.0f, -100.0f);
+	glVertex3f(-100.0f, 0.0f, -100.0f);
+	glVertex3f(-100.0f, 0.0f, 100.0f);
+	glVertex3f(100.0f, 0.0f, 100.0f);
+	glVertex3f(100.0f, 0.0f, -100.0f);
 	glEnd();
 
 	for (int i = -3; i < 3; i++)
@@ -89,11 +85,25 @@ void Draw() {
 			rysujDomek();
 			glPopMatrix();
 		}
+	glPushMatrix();
+	glBegin(GL_POINTS);
+	glColor3f(1, 0, 1);
+	glVertex3f(x + lx, y + ly, z + lz);
+	glRotated(1, 0, 1, 0);
+	glVertex3f(x + lx, y + ly, z + lz);
+	glEnd();
+	glPopMatrix();
 	glutSwapBuffers();
 }
 
 static void idle() {
 	glutPostRedisplay();
+	glBegin(GL_TRIANGLES);
+	glColor3f(1, 0, 1);
+	glVertex3f(x + -lx, y + -ly, z + -lz);
+	glVertex3f(0, 1, 1);
+	glVertex3f(0, 0, 10);
+	glEnd();
 }
 
 int main(int argc, char *argv[]) {
@@ -104,9 +114,9 @@ int main(int argc, char *argv[]) {
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
 	glutCreateWindow("Press Q to exit");
 
-	glutReshapeFunc(Reshape); 	//argumentem glutReshapefunc() jest funkcja, wykonywana przez bibliotekê GLUT w momencie
-								//zmiany rozmiaru okna, która to z kolei otrzymuje w parametrach now¹ szerokoœæ i wysokoœæ
-								//okna (dwa razy int).
+	glutReshapeFunc(Reshape); //argumentem glutReshapefunc() jest funkcja, wykonywana przez bibliotekê GLUT w momencie
+	//zmiany rozmiaru okna, która to z kolei otrzymuje w parametrach now¹ szerokoœæ i wysokoœæ
+	//okna (dwa razy int).
 	glClearColor(0, 0, 0, 0);
 	glutDisplayFunc(Draw);
 	glutIgnoreKeyRepeat(0);
