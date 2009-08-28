@@ -18,25 +18,26 @@ void Reshape(int w, int h)
      ratio=1.0f *w/h;
 
      glMatrixMode(GL_PROJECTION);
-
      glLoadIdentity();
-
      glViewport(0,0,w,h);
-
-     glBegin(GL_TRIANGLES);
-     glVertex3f(1,0,0);
-     glVertex3f(1,1,1);
-     glVertex3f(0,0,1);
-
-     glEnd();
 
      gluPerspective(45,ratio,0.01,1000); //HA HA HA :F 1->0.01
      glMatrixMode(GL_MODELVIEW);
+
+
+
      glLoadIdentity();
 
      gluLookAt(x,y,z,
      x+lx, y+ly, z+lz,
      0.0f, 1.0f, 0.0f);
+
+     glBegin(GL_TRIANGLES);
+     	glColor3f(1,0,1);
+     				glVertex3f(x+-lx,y+-ly,z+-lz);
+     			    glVertex3f(0,1,1);
+     			    glVertex3f(0,0,10);
+     	glEnd();
 
      }
 
@@ -132,6 +133,7 @@ void mouse(int a, int b) {
 	lz = -cos(kat+ang2);
 
 	glLoadIdentity();
+
 
 	gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
 
