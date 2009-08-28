@@ -20,6 +20,8 @@ float ratio;
 float x = 0.0f, y = 1.75f, z = 5.0f;
 float lx = 0.0f, ly = 0.0f, lz = -1.0f;
 int deltaRuch = 0;
+float deltaSkret;
+float ang2;
 
 //do commita
 using namespace std;
@@ -55,21 +57,22 @@ void PlaskiRuch(int i) {
 
 }
 
+
 void Draw() {
 	cout << "a";
 
 	if (deltaRuch)
 		PlaskiRuch(deltaRuch);
+
 	if (deltaKat) {
 		kat += deltaKat;
 
-		zorientujMnie(kat);
+		zorientujMnie(kat+ang2);
 
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);	//w³¹czamy testowanie g³êbokoœci
-
 	glColor3f(0.9, 0.9, 0.9); // ustalamy kolor na jasno-szary
 	// ziuuu, teraz rysujemy pod³o¿e
 	glBegin(GL_QUADS);

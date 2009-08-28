@@ -23,6 +23,13 @@ void Reshape(int w, int h)
 
      glViewport(0,0,w,h);
 
+     glBegin(GL_TRIANGLES);
+     glVertex3f(1,0,0);
+     glVertex3f(1,1,1);
+     glVertex3f(0,0,1);
+
+     glEnd();
+
      gluPerspective(45,ratio,0.01,1000); //HA HA HA :F 1->0.01
      glMatrixMode(GL_MODELVIEW);
      glLoadIdentity();
@@ -74,6 +81,7 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	switch (key) {
 	case 'a':
 		deltaKat = -0.005f;
+		//kat+=-0.005f;
 		cout << "Zupa";
 		break;
 	case 'd':
@@ -118,9 +126,11 @@ void mouse(int a, int b) {
 	if(a<24)
 		glutWarpPointer(a+900,b);
 
-	float ang = -0.007*(512-a);
-	lx = sin(ang);
-	lz = -cos(ang);
+	ang2 = -0.007*(512-a);
+	//kat=ang;
+	lx = sin(kat+ang2);
+	lz = -cos(kat+ang2);
+
 	glLoadIdentity();
 
 	gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
