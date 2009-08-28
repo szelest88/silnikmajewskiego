@@ -94,7 +94,7 @@ void processNormalKeys(unsigned char key, int x, int y) {
 		deltaRuch = -1;
 		break;
 	case 27:
-	case 'q':
+	case 'q':case'Q':
 		exit(0);
 	}
 	glutPostRedisplay();
