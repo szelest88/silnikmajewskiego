@@ -8,12 +8,12 @@
 #include <GL/glut.h>
 //#include "zmienne.h"
 #include "funkcje.h"
+#include "menus.h"
 
 //do commita
 using namespace std;
 //dupa
-#include "zmienne.h"
-#include "funkcje.h"
+
 float kat = 0.0;
 float deltaKat = 0.0;
 float ratio;
@@ -54,6 +54,9 @@ void PlaskiRuch(int i) {
 }
 
 void Draw() {
+
+
+
 	cout << "a";
 
 	if (deltaRuch)
@@ -97,18 +100,18 @@ void Draw() {
 }
 
 static void idle() {
+
 	glutPostRedisplay();
-	glBegin(GL_TRIANGLES);
-	glColor3f(1, 0, 1);
-	glVertex3f(x + -lx, y + -ly, z + -lz);
-	glVertex3f(0, 1, 1);
-	glVertex3f(0, 0, 10);
-	glEnd();
+
 }
 
 int main(int argc, char *argv[]) {
 
+
+
 	glutInit(&argc, argv);
+
+
 	glutInitWindowSize(1024, 768);
 	glutInitWindowPosition(100, 100);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
@@ -117,17 +120,23 @@ int main(int argc, char *argv[]) {
 	glutReshapeFunc(Reshape); //argumentem glutReshapefunc() jest funkcja, wykonywana przez bibliotekê GLUT w momencie
 	//zmiany rozmiaru okna, która to z kolei otrzymuje w parametrach now¹ szerokoœæ i wysokoœæ
 	//okna (dwa razy int).
-	glClearColor(0, 0, 0, 0);
+	glClearColor(0, 0, 1, 0);
+
 	glutDisplayFunc(Draw);
 	glutIgnoreKeyRepeat(0);
 	glutKeyboardFunc(processNormalKeys);
 	glutKeyboardUpFunc(upNormalKeys);
+	glutSetCursor(GLUT_CURSOR_NONE); //doda³em, ukrywa kursor myszy
 	glutPassiveMotionFunc(mouse);
+
+	createMenus();
 
 	glutSpecialFunc(pressKey);
 	glutSpecialUpFunc(releaseKey);
 	glutIdleFunc(idle);
 	glutMainLoop();
+
+
 
 	return 0;
 }
