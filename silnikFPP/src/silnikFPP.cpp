@@ -15,7 +15,9 @@ using namespace std;
 //dupa
 
 float kat = 0.0;
+float katpion = 0.0; // added
 float deltaKat = 0.0;
+float deltaKatpion=0.0; //added
 float ratio;
 float x = 0.0f, y = 1.75f, z = 5.0f;
 float lx = 0.0f, ly = 0.0f, lz = -1.0f;
@@ -34,9 +36,10 @@ void rysujDomek() {
 
 }
 
-void zorientujMnie(float ang) {
+void zorientujMnie(float ang, float angpion) { //scd arg added
 	lx = sin(ang);
 	lz = -cos(ang);
+	ly = sin(angpion);//added
 	glLoadIdentity();
 
 	gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
@@ -62,12 +65,13 @@ void Draw() {
 	if (deltaRuch)
 		PlaskiRuch(deltaRuch);
 
-	if (deltaKat) {
+	if (deltaKat || deltaKatpion) {
 		kat += deltaKat;
 
-		zorientujMnie(kat + ang2);
+		zorientujMnie(kat + ang2, katpion);
 
 	}
+
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST); //w³¹czamy testowanie g³êbokoœci
@@ -89,12 +93,13 @@ void Draw() {
 			glPopMatrix();
 		}
 	glPushMatrix();
-	glBegin(GL_POINTS);
+	glBegin(GL_LINES);
 	glColor3f(1, 0, 1);
-	glVertex3f(x + lx, y + ly, z + lz);
-	glRotated(1, 0, 1, 0);
-	glVertex3f(x + lx, y + ly, z + lz);
-	glEnd();
+
+	glVertex3f(x + lx, y + ly-0.04, z + lz);
+	glVertex3f(x + lx, y + ly+0.04, z + lz);
+
+		glEnd();
 	glPopMatrix();
 	glutSwapBuffers();
 }

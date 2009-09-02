@@ -8,7 +8,9 @@
 #ifndef ZMIENNE_H_
 #define ZMIENNE_H_
 extern float kat;
+extern float katpion; //added
 extern float deltaKat;
+extern float deltaKatpion; //added
 extern float ratio;
 extern float x, y, z;
 extern float lx, ly, lz;

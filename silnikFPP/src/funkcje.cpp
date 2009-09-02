@@ -132,6 +132,10 @@ void mouse(int a, int b) {
 	lx = sin(kat+ang2);
 	lz = -cos(kat+ang2);
 
+	katpion=0.005*b; //added
+
+	ly = sin(katpion); //added
+
 	glLoadIdentity();
 
 
