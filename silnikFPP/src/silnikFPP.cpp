@@ -1,3 +1,5 @@
+
+
 #include <windows.h>              // musi byæ, nie mo¿na u¿yæ <stdio.h> zamiast tego
 #define GLUT_DISABLE_ATEXIT_HACK  // musi byæ u¿yte przed includowaniem "glut.h"
 #include <math.h>
