@@ -37,7 +37,7 @@ void rysujDomek() {
 
 void zorientujMnie(float ang, float angpion) { //scd arg added
 	lx = sin(ang);
-	lz = -cos(ang);s
+	lz = -cos(ang);
 	ly = sin(angpion);//added
 	glLoadIdentity();
 
