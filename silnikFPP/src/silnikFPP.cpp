@@ -49,7 +49,6 @@ void zorientujMnie(float ang, float angpion) { //scd arg added
 void PlaskiRuch(int i) {
 	x += i * lx * 0.05;
 	z += i * lz * 0.05;
-	cout << z << "\n";
 	glLoadIdentity();
 
 	gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
@@ -57,10 +56,6 @@ void PlaskiRuch(int i) {
 }
 
 void Draw() {
-
-
-
-	cout << "a";
 
 	if (deltaRuch)
 		PlaskiRuch(deltaRuch);
@@ -105,17 +100,12 @@ void Draw() {
 }
 
 static void idle() {
-
 	glutPostRedisplay();
-
 }
 
 int main(int argc, char *argv[]) {
 
-
-
 	glutInit(&argc, argv);
-
 
 	glutInitWindowSize(1024, 768);
 	glutInitWindowPosition(100, 100);
@@ -140,8 +130,6 @@ int main(int argc, char *argv[]) {
 	glutSpecialUpFunc(releaseKey);
 	glutIdleFunc(idle);
 	glutMainLoop();
-
-
 
 	return 0;
 }
