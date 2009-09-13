@@ -12,19 +12,24 @@ using namespace std;
 
 void Reshape(int w, int h)
      {
+
+
                  if(h==0)
                  h=1;
 
      ratio=1.0f *w/h;
 
-     glMatrixMode(GL_PROJECTION);
-     glLoadIdentity();
      glViewport(0,0,w,h);
 
+
+
+     glMatrixMode(GL_PROJECTION);
+     glLoadIdentity();
+
+
      gluPerspective(45,ratio,0.01,1000); //HA HA HA :F 1->0.01
+
      glMatrixMode(GL_MODELVIEW);
-
-
 
      glLoadIdentity();
 
@@ -32,12 +37,6 @@ void Reshape(int w, int h)
      x+lx, y+ly, z+lz,
      0.0f, 1.0f, 0.0f);
 
-     glBegin(GL_TRIANGLES);
-     	glColor3f(1,0,1);
-     				glVertex3f(x+-lx,y+-ly,z+-lz);
-     			    glVertex3f(0,1,1);
-     			    glVertex3f(0,0,10);
-     	glEnd();
 
      }
 
@@ -77,16 +76,23 @@ void releaseKey(int key, int x, int y) { //jak to wydostaæ z tego pliku?
 
 }
 
-void processNormalKeys(unsigned char key, int x, int y) {
+void processNormalKeys(unsigned char key, int x1, int y1) {
 
-	switch (key) {
+	switch (key) {  //tu jest coœ skopane
 	case 'a':
-		deltaKat = -0.005f;
-		//kat+=-0.005f;
-		cout << "Zupa";
+for(int i=0;i<1024;i++){
+		kat-=0.00003125;
+
+		lx = sin(kat+ang2);
+			lz = -cos(kat+ang2);
+			glLoadIdentity();
+			gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
+		glutPostRedisplay();
+}
+
 		break;
 	case 'd':
-		deltaKat = 0.005f;
+		kat+=0.025f;
 		break;
 	case 'w':
 		deltaRuch = 1;
@@ -98,7 +104,7 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	case 'q':case'Q':
 		exit(0);
 	}
-	glutPostRedisplay();
+
 
 }
 
@@ -134,7 +140,7 @@ void mouse(int a, int b) {
 
 	katpion=0.005*b; //added
 
-	ly = sin(katpion); //added
+	ly = sin(45+katpion); //added, doda³em 45 ¿eby na starcie kamera patrzy³a w p³aszczyŸnie poziomiej
 
 	glLoadIdentity();
 
