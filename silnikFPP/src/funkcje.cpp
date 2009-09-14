@@ -12,23 +12,16 @@ using namespace std;
 
 void Reshape(int w, int h)
      {
-
-
-                 if(h==0)
-                 h=1;
+     if(h==0)
+    	 h=1;
 
      ratio=1.0f *w/h;
 
      glViewport(0,0,w,h);
 
-
-
      glMatrixMode(GL_PROJECTION);
      glLoadIdentity();
-
-
      gluPerspective(45,ratio,0.01,1000); //HA HA HA :F 1->0.01
-
      glMatrixMode(GL_MODELVIEW);
 
      glLoadIdentity();
@@ -36,7 +29,6 @@ void Reshape(int w, int h)
      gluLookAt(x,y,z,
      x+lx, y+ly, z+lz,
      0.0f, 1.0f, 0.0f);
-
 
      }
 
@@ -76,23 +68,14 @@ void releaseKey(int key, int x, int y) { //jak to wydostaæ z tego pliku?
 
 }
 
-void processNormalKeys(unsigned char key, int x1, int y1) {
+void processNormalKeys(unsigned char key, int x, int y) {
 
 	switch (key) {  //tu jest coœ skopane
 	case 'a':
-for(int i=0;i<1024;i++){
-		kat-=0.00003125;
-
-		lx = sin(kat+ang2);
-			lz = -cos(kat+ang2);
-			glLoadIdentity();
-			gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
-		glutPostRedisplay();
-}
-
+		deltaKat=-0.002;
 		break;
 	case 'd':
-		kat+=0.025f;
+		deltaKat=0.002;
 		break;
 	case 'w':
 		deltaRuch = 1;
@@ -104,7 +87,6 @@ for(int i=0;i<1024;i++){
 	case 'q':case'Q':
 		exit(0);
 	}
-
 
 }
 
@@ -144,7 +126,8 @@ void mouse(int a, int b) {
 
 	glLoadIdentity();
 
-
-	gluLookAt(x, y, z, x + lx, y + ly, z + lz, 0.0f, 1.0, 0.0f);
+	gluLookAt(	x, y, z,
+				x + lx, y + ly,
+				z + lz, 0.0f, 1.0, 0.0f);
 
 }
