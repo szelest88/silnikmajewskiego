@@ -1,5 +1,3 @@
-
-
 #include <windows.h>              // musi byæ, nie mo¿na u¿yæ <stdio.h> zamiast tego
 #define GLUT_DISABLE_ATEXIT_HACK  // musi byæ u¿yte przed includowaniem "glut.h"
 #include <math.h>
@@ -8,13 +6,10 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-//#include "zmienne.h"
 #include "funkcje.h"
 #include "menus.h"
 
-//do commita
 using namespace std;
-//dupa
 
 float kat = 0.0;
 float katpion = 0.0; // added
@@ -25,12 +20,12 @@ float x = 0.0f, y = 1.75f, z = 5.0f;
 float lx = 0.0f, ly = 0.0f, lz = -1.0f;
 int deltaRuch = 0;
 float deltaSkret;
-float ang2;
+float kat2;
 
-//do commita
 using namespace std;
 
 void rysujDomek() {
+
 	glColor3f(1, 0, 0);
 	glPushMatrix();
 	glutSolidCube(1);
@@ -61,7 +56,7 @@ void Draw() {
 
 	if (deltaKat || deltaKatpion) {
 		kat += deltaKat;
-		zorientujMnie(kat + ang2, katpion);
+		zorientujMnie(kat + kat2, katpion);
 	}
 
 
@@ -107,7 +102,7 @@ int main(int argc, char *argv[]) {
 	glutInitWindowPosition(100, 100);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
 	glutCreateWindow("Press Q to exit");
-
+	glutWarpPointer(512,384);
 	glutReshapeFunc(Reshape); //argumentem glutReshapefunc() jest funkcja, wykonywana przez bibliotekê GLUT
 	//w momencie zmiany rozmiaru okna, która to z kolei otrzymuje w parametrach now¹ szerokoœæ i wysokoœæ
 	//okna (dwa razy int).

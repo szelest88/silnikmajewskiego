@@ -73,9 +73,11 @@ void processNormalKeys(unsigned char key, int x, int y) {
 	switch (key) {  //tu jest coœ skopane
 	case 'a':
 		deltaKat=-0.002;
+		//deltaKatpion=0;
 		break;
 	case 'd':
 		deltaKat=0.002;
+		//deltaKatpion=0;
 		break;
 	case 'w':
 		deltaRuch = 1;
@@ -115,14 +117,14 @@ void mouse(int a, int b) {
 	if(a<24)
 		glutWarpPointer(a+900,b);
 
-	ang2 = -0.007*(512-a);
+	kat2 = -0.007*(512-a);
 	//kat=ang;
-	lx = sin(kat+ang2);
-	lz = -cos(kat+ang2);
+	lx = -sin(kat+kat2);
+	lz = cos(kat+kat2);
 
-	katpion=0.005*b; //added
+	katpion=0.005*(b-384); //added
 
-	ly = sin(45+katpion); //added, doda³em 45 ¿eby na starcie kamera patrzy³a w p³aszczyŸnie poziomiej
+	ly = -sin(katpion); //added, doda³em 45 ¿eby na starcie kamera patrzy³a w p³aszczyŸnie poziomiej
 
 	glLoadIdentity();
 

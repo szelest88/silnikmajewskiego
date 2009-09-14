@@ -16,5 +16,5 @@ extern float x, y, z;
 extern float lx, ly, lz;
 extern int deltaRuch;
 extern float deltaSkret;
-extern float ang2;
+extern float kat2;
 #endif /* ZMIENNE_H_ */
