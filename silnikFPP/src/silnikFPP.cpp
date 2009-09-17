@@ -99,10 +99,10 @@ int main(int argc, char *argv[]) {
 	glutInit(&argc, argv);
 
 	glutInitWindowSize(1024, 768);
-	glutInitWindowPosition(100, 100);
+	glutInitWindowPosition(0, 0);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
 	glutCreateWindow("Press Q to exit");
-	glutWarpPointer(512,384);
+	glutWarpPointer(512,384); // ?uzup? ustawia kursor w pozycji pocz¹tkowej w œrodku ekranu
 	glutReshapeFunc(Reshape); //argumentem glutReshapefunc() jest funkcja, wykonywana przez bibliotekê GLUT
 	//w momencie zmiany rozmiaru okna, która to z kolei otrzymuje w parametrach now¹ szerokoœæ i wysokoœæ
 	//okna (dwa razy int).
