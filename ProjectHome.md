@@ -1,0 +1,1 @@
+My project as in summary, started for my personal educational purposes.
